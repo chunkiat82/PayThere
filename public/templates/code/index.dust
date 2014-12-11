@@ -1,0 +1,30 @@
+{>"layouts/master" /}
+{<head}
+	{@if cond="'{status}' == 'PENDING' "}
+		<meta http-equiv="refresh" content="5">
+	{/if}
+{/head}
+{<body}
+	<div class="container">
+    <div class="row">
+	  <div class="">
+	  	{@if cond="'{status}' == 'PENDING' "}
+	  		<div class="thumbnail">
+		      <img src="data:image/png;base64,{ecBase64Image}"/>      
+		      <div class="caption text-center">
+		        <h3>Customer Checkout Code</h3>
+		        <p>Scan the code to authorize the payment shown</p>
+		        <div class="alert alert-info" role="alert"><a href="{ecLink}">{authorizedAmount}</a></div>
+		      </div>
+		    </div>
+		{:else} 
+		  	<div class="jumbotron text-center">
+				<h3>{customerName} - {paymentId}</h3> 
+				<div class="alert alert-success" role="alert">{authorizedAmount} Paid</div>
+			</div>
+		{/if}
+	    
+	  </div>
+	</div>
+	</div>
+{/body}

@@ -1,0 +1,14 @@
+{>"layouts/master" /}
+{<head}
+	<meta http-equiv="refresh" content="3">
+{/head}
+{<body}
+	<div class="container">
+		{#payments}
+			<div class="jumbotron">
+				<h1>{customerName} - <a class="btn btn-primary btn-lg" href="#" role="button">{status}</a></h1>
+				<p>{paymentId}</p>
+			</div>			
+		{/payments}    	
+	</div>
+{/body}

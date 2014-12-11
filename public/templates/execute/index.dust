@@ -1,0 +1,11 @@
+{>"layouts/master" /}
+
+{<body}
+	<div class="container">
+    	<div class="jumbotron text-center">
+			<h3>Thank you for your paying through <img  src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg"></h3>			
+			<p><img style="width:250px" src="/images/dp/disrupth.jpg"></p>
+			<p>We hope to see you again.</p>
+		</div>
+	</div>
+{/body}

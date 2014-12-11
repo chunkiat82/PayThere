@@ -1,0 +1,48 @@
+{
+  "intent": "sale",
+  "redirect_urls": {
+    "return_url": "http://localhost:8000/execute",
+    "cancel_url": "http://localhost:8000/cancel"
+  },
+  "payer": {
+    "payment_method": "paypal"
+  },
+  "transactions": [
+    {
+      "amount": {
+        "total": "128.00",
+        "currency": "USD",
+        "details": {
+          "subtotal": "128.00",
+          "tax": "0.00",
+          "shipping": "0.00",
+          "handling_fee": "0.00",
+          "shipping_discount": "0.00",
+          "insurance": "0.00"
+        }
+      },
+      "item_list": {
+        "items": [
+          {
+            "name": "Apples",
+            "description": "Japanese Sweet Apples",
+            "quantity": "1",
+            "price": "23.00",
+            "tax": "0.00",
+            "sku": "DNOMYAR1",
+            "currency": "USD"
+          },
+          {
+            "name": "Beef",
+            "description": "Wagyu Beef",
+            "quantity": "1",
+            "price": "105.00",
+            "tax": "0.00",
+            "sku": "DNOMYAR2",
+            "currency": "USD"
+          }
+        ]
+      }
+    }
+  ]
+}

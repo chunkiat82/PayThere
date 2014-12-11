@@ -1,0 +1,111 @@
+{
+	"account_number": "1659371090107732880",
+	"name": "Retail",
+	"application_type": "WEB",
+	"metadata": [{
+		"name": "display_name",
+		"value": "Retail"
+	},
+	{
+		"name": "oauth_return_url",
+		"value": "http://yahoo.com"
+	},
+	{
+		"name": "privacy_policy_url",
+		"value": "http://sina.com"
+	},
+	{
+		"name": "user_agreement_url",
+		"value": "http://agreement.com"
+	},
+	{
+		"name": "contact_email",
+		"value": "beamdaddy@paypal.com"
+	}],
+	"capabilities": [{
+		"name": "PAYPAL_ACCESS",
+		"metadata": [{
+			"name": "oauth_timezone",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_language",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_street_address1",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_street_address2",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_fullname",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_state",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_country",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_age_range",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_account_verified",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_date_of_birth",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_locale",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_email",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_city",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_zip",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_phone_number",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_account_type",
+			"value": "Y"
+		},
+		{
+			"name": "oauth_account_creation_date",
+			"value": "Y"
+		},
+		{
+			"name": "openid_connect",
+			"value": "Y"
+		},
+		{
+			"name": "allow_unconfirmed_emails",
+			"value": "N"
+		}]
+	},
+	{
+		"name": "PAYMENT",
+		"scopes": ["https://api.paypal.com/v1/payments/.*",
+		"https://api.paypal.com/v1/vault/credit-card",
+		"https://api.paypal.com/v1/vault/credit-card/.*",
+		"https://uri.paypal.com/services/payments/futurepayments"]
+	}]
+}

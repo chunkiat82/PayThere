@@ -1,0 +1,5 @@
+{>"layouts/master" /}
+
+{<body}
+    <a href="retail">Retail Checkout</a>
+{/body}
