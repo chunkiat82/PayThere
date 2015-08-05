@@ -10,10 +10,10 @@
   "transactions": [
     {
       "amount": {
-        "total": "128.00",
-        "currency": "USD",
+        "total": "4995.00",
+        "currency": "SGD",
         "details": {
-          "subtotal": "128.00",
+          "subtotal": "4995.00",
           "tax": "0.00",
           "shipping": "0.00",
           "handling_fee": "0.00",
@@ -24,22 +24,13 @@
       "item_list": {
         "items": [
           {
-            "name": "Apples",
-            "description": "Japanese Sweet Apples",
+            "name": "Pre-Owned Chanel Maxi Classic Flap Bag",
+            "description": "Exude your inner femininity with this timeless piece of classic that cannot go wrong.",
             "quantity": "1",
-            "price": "23.00",
+            "price": "4995.00",
             "tax": "0.00",
-            "sku": "DNOMYAR1",
-            "currency": "USD"
-          },
-          {
-            "name": "Beef",
-            "description": "Wagyu Beef",
-            "quantity": "1",
-            "price": "105.00",
-            "tax": "0.00",
-            "sku": "DNOMYAR2",
-            "currency": "USD"
+            "sku": "VC3951846A15008",
+            "currency": "SGD"
           }
         ]
       }

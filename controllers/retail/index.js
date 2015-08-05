@@ -9,6 +9,7 @@ var Datastore = require('nedb')
 
 var request = require('request');
 var paymentJSON = require('../../requests/payment.json');
+var client = require('twilio')('AC5592f04d75d6ccf4eba102992a0a9f271', '258d925d73f6b6dcc7f42c4faef13a481');
 
 module.exports = function (router) {
 
@@ -33,6 +34,7 @@ module.exports = function (router) {
  			req.accessToken = accessToken;
  			callExpressCheckout(req,res,function(){
 				console.log("getCheckoutDetails done");
+                res.render('retail/index', {});
  			});
  		});
         
@@ -41,7 +43,7 @@ module.exports = function (router) {
     function callExpressCheckout(req,res,callback){
 
 		var options = {
-		    url: 'https://live.qa.paypal.com:11888/v1/payments/payment',
+		    url: 'https://api.sandbox.paypal.com/v1/payments/payment',
 		    headers: {
 		        "Accept-Language":"en_US",
                 "Accept":"application/json",
@@ -53,7 +55,8 @@ module.exports = function (router) {
 		};
 
         request.post(options, function(err,httpResponse,body){
-        	if (err) return console.log(httpResponse);   	
+        	if (err) return console.log(httpResponse);
+
         	console.log(body);
         	var model = req.model;
         	
@@ -69,13 +72,15 @@ module.exports = function (router) {
 
     function callOAuth(req,res,callback){
 
+        console.log("making Auth Call");
+
         var options = {
-		    url: 'https://live.qa.paypal.com:11866/v1/oauth2/token',
+		    url: 'https://api.sandbox.paypal.com/v1/oauth2/token',
 		    headers: {
 		        "Accept-Language":"en_US",
                 "Accept":"application/json",
                 "Content-Type":"application/x-www-form-urlencoded",                
-                "Authorization": "Basic QVprVVhSRDQ4R280dWhLZXpGUC0tU19fY2VnM2p6TnNmRXZycTVPemtjMmliUE04UGllcjlyRkxCZ3VVOg=="                
+                "Authorization": "Basic QWNQVWNoRFh0NkowcDlDUTZ0SVJMMVRHYW90STA1VGVxZ0FZOU80YnJHZDR2VzZ2WnpyTFlyVUtmNHhoOkVIamNaQkFQS2p4WmhzR1hNaDBxTUlfU1pmaGFFV3N3d2xJeER0ajBPckVwT01wTlA0ZWp4MVk4MndZUA=="                
 		    },
 		    form: {"grant_type":"client_credentials"},
 		    json:true
@@ -119,6 +124,7 @@ module.exports = function (router) {
             var entry = links[i];
             if (entry.rel === 'approval_url') {            
                 model.eclink = entry.href;
+                sendSMS(model.eclink);
                 populateBase64Image(entry.href, function(err,data){
 
 
@@ -158,12 +164,12 @@ module.exports = function (router) {
 
 		console.log("Before Call populateBase64Image");
 
-        request.post(options, function(err,httpResponse,body){
-        	if (err) return console.log(err);        	
-			console.log(body);        	
-        	callback(null,body);        	
-        });
-
+   //      request.post(options, function(err,httpResponse,body){
+   //      	if (err) return console.log(err);        	
+			// console.log(body);        	
+   //      	callback(null,body);        	
+   //      });
+    callback(); 
     }
 
     function getQRCode(data,callback){        
@@ -177,12 +183,34 @@ module.exports = function (router) {
             json:true
         };
 
-        request.get(options, function(err,httpResponse,body){
-        	if (err) return console.log(err);
+        // request.get(options, function(err,httpResponse,body){
+        // 	if (err) return console.log(err);
         	        	
-        	callback(null,body.QRCode.image);
-        });
+        // 	callback(null,body.QRCode.image);
+        // });
+        callback();
+    }
 
+    function sendSMS(link){
+         client.sendMessage({
+
+            to: '+6586688706', // Any number Twilio can deliver to
+            from: '+14423337468', // A number you bought from Twilio and can use for outbound communication
+            body: '[REEBONZ] - To completed your payment, please click on the link - '+link // body of the SMS message
+
+        }, function(err, responseData) { //this function is executed when a response is received from Twilio
+
+            if (!err) { // "err" is an error received during the request, if any
+
+                // "responseData" is a JavaScript object containing data received from Twilio.
+                // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
+                // http://www.twilio.com/docs/api/rest/sending-sms#example-1
+
+                console.log(responseData.from); // outputs "+14506667788"
+                console.log(responseData.body); // outputs "word to your mother."
+
+            }
+        });
     }
 
 };
